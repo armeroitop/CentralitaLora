@@ -21,6 +21,5 @@ void loop()
     // Datum is middle centre
    // tft.setTextDatum(TL_DATUM);
    pantalla.draw(antena.recibeDatos());
-   ;
-      
+         
 }
