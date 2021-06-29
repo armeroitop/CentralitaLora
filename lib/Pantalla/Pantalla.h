@@ -15,6 +15,13 @@ class Pantalla
     private:
         String _datosRecibidos;
         String _temperatura, _humedadAmbiente, _humedadSuelo, _presionAtmosf, _gas, _altitud, _nivelBateria;
+        int _pos_temperatura, 
+            _pos_humedad, 
+            _pos_suelo, 
+            _pos_presion,
+            _pos_gas,   
+            _pos_altitud,
+            _pos_bateria;
    
     public:
         TFT_eSPI tft = TFT_eSPI();       // Invoke custom library

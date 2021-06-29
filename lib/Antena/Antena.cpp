@@ -41,16 +41,7 @@ String Antena::recibeDatos()
     if (packetSize) {                               
         // read packet
         while (LoRa.available()) {
-
-            //Primero borramos en pantalla los datos que existen pintandolos otra vez pero en negr
-            /* if(LoRaDataAntigua){
-                tft.setTextColor(TFT_BLACK, TFT_BLACK);
-                //tft.drawString(LoRaDataAntigua, 120, 50, 4); 
-                tft.drawString(temperatura, 120, 50, 4);
-                tft.drawString(humedadAmbiente, 120, 100, 4);
-                tft.drawString(humedadSuelo, 120, 150, 4); 
-            }  */
-
+         
             _datosRecibidos = LoRa.readString();
                      
             if(_datosRecibidos.substring(0, 4) != "dgma")  {
@@ -59,11 +50,9 @@ String Antena::recibeDatos()
             }else{                
                 Serial.println("recibiste un paquete de un tal DGMA: " + _datosRecibidos);                
             }  
-
         }
-
-      
     }  
+    //Serial.println("recibeDatos.. ");
     return _datosRecibidos;
 }
 
