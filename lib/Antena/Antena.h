@@ -16,7 +16,7 @@ class Antena
 {
 private:
     
-    String _datosRecibidos, _datosRecibidosAntiguos; 
+    String _datosRecibidos, _datosRecibidosAntiguos, _datosAEnviar; 
 public:
     Antena(/* args */);
     ~Antena();

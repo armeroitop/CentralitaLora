@@ -48,11 +48,13 @@ String Antena::recibeDatos()
                 Serial.println("recibiste un paquete extraño: " + _datosRecibidos);
                 return "mal";
             }else{                
-                Serial.println("recibiste un paquete de un tal DGMA: " + _datosRecibidos);                
+                Serial.println("recibiste un paquete de un tal DGMA: " + _datosRecibidos);   
+                _datosAEnviar = _datosRecibidos;  
+                           
             }  
         }
-    }  
-    //Serial.println("recibeDatos.. ");
-    return _datosRecibidos;
+    } 
+    return _datosAEnviar;
+    
 }
 
