@@ -194,10 +194,10 @@
 // The hardware SPI can be mapped to any pins
 
 
-#define TFT_MISO 13
-#define TFT_MOSI 12
+#define TFT_MISO 12
+#define TFT_MOSI 13
 #define TFT_SCLK 14
-//#define TFT_CS   15  // Chip select control pin
+#define TFT_CS   15  // Chip select control pin
 #define TFT_DC   26  // Data Command control pin
 #define TFT_RST  27  // Reset pin (could connect to RST pin)
 
