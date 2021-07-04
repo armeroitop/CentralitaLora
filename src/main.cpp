@@ -3,23 +3,24 @@
 #include <Antena.h>
 #include <Pantalla.h>
 
-Antena antena;
-Pantalla pantalla;
+Antena   *p_antena = new Antena();
+Pantalla *p_pantalla = new Pantalla();
 
 
 
 String LoRaData, LoRaDataAntigua;
 
 void setup() {
-  antena.setup();
-  pantalla.setup();
+    p_antena->setup();
+    p_pantalla->setup();
 
+    p_pantalla->draw(p_antena);
 }
 
 void loop() 
-{       
-    // Datum is middle centre
-   // tft.setTextDatum(TL_DATUM);
-   pantalla.draw(antena.recibeDatos());
-         
+{  
+   if(p_antena->recibeDatos()){
+        Serial.println("Puedes dibujar los datos porfa ");
+        p_pantalla->draw(p_antena);
+   }     
 }

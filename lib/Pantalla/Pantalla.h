@@ -3,6 +3,7 @@
 
 #include <SPI.h>
 #include <TFT_eSPI.h> // Hardware-specific library
+#include <Antena.h>
 
 
 
@@ -28,7 +29,7 @@ class Pantalla
         Pantalla(/* args */);
         ~Pantalla();
         void setup();
-        void draw(String datosRecibidos);
+        void draw(Antena* p_antena);
 };
 
 

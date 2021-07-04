@@ -2,6 +2,13 @@
 
 Antena::Antena(/* args */)
 {     
+    temperatura     = "--";
+    humedadSuelo    = "--";
+    humedadAmbiente = "--";
+    presionAtmosf   = "--";
+    gas             = "--";
+    altitud         = "--";
+    nivelBateria    = "--";
 }
 
 Antena::~Antena()
@@ -34,7 +41,7 @@ void Antena::setup()
     Serial.println("LoRa Initializing OK!");  
 }
 
-String Antena::recibeDatos() 
+bool Antena::recibeDatos() 
 {
      // try to parse packet
     int packetSize = LoRa.parsePacket();
@@ -46,13 +53,31 @@ String Antena::recibeDatos()
                      
             if(_datosRecibidos.substring(0, 4) != "dgma")  {
                 Serial.println("recibiste un paquete extraño: " + _datosRecibidos);
-                return "mal";
+               
+                return false;
             }else{                
-                Serial.println("recibiste un paquete de un tal DGMA: " + _datosRecibidos);                
+                Serial.println("recibiste un paquete de un tal DGMA: " + _datosRecibidos); 
+                _pos_temperatura =   _datosRecibidos.indexOf("temperatura");
+                _pos_humedad =       _datosRecibidos.indexOf("humedad");
+                _pos_suelo =         _datosRecibidos.indexOf("suelo");
+                _pos_presion =       _datosRecibidos.indexOf("presion");
+                _pos_gas =           _datosRecibidos.indexOf("gas");
+                _pos_altitud =       _datosRecibidos.indexOf("altitud");
+                _pos_bateria =       _datosRecibidos.indexOf("bateria");
+
+                temperatura =       _datosRecibidos.substring(_pos_temperatura+11, _pos_humedad);
+                humedadAmbiente =   _datosRecibidos.substring(_pos_humedad+7, _pos_suelo);         
+                humedadSuelo =      _datosRecibidos.substring(_pos_suelo+5, _pos_presion);
+                presionAtmosf =     _datosRecibidos.substring(_pos_presion+7, _pos_gas);
+                gas =               _datosRecibidos.substring(_pos_gas+3, _pos_altitud);
+                altitud =           _datosRecibidos.substring(_pos_altitud+7, _pos_bateria);
+                nivelBateria =      _datosRecibidos.substring(_pos_bateria+7, _datosRecibidos.length());
+                
+                return true;               
             }  
         }
     }  
     //Serial.println("recibeDatos.. ");
-    return _datosRecibidos;
+    return false;
 }
 
