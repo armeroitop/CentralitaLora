@@ -4,12 +4,13 @@
 #include <SPI.h>
 #include <TFT_eSPI.h> // Hardware-specific library
 #include <Antena.h>
-
+#include <Sensores.h>
+/* #include <Free_Fonts.h> */
 
 
 #define TFT_BLACK 0x0000
 #define TFT_WHITE 0xFFFF
-#define MC_DATUM 4
+#define MC_DATUM 3
 
 class Pantalla
 {
@@ -23,13 +24,15 @@ class Pantalla
             _pos_gas,   
             _pos_altitud,
             _pos_bateria;
+        void IconoBateria(String nivel);
    
     public:
         TFT_eSPI tft = TFT_eSPI();       // Invoke custom library
         Pantalla(/* args */);
         ~Pantalla();
         void setup();
-        void draw(Antena* p_antena);
+        void drawSensorExterno(Antena* p_antena);
+        void drawSensorInterno(Sensores *p_sensorBME680);
 };
 
 
