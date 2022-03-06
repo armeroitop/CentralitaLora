@@ -27,77 +27,77 @@ void Sensores::setup()
 
 String Sensores::lecturaTemperatura() 
 {
-    float t = bme.readTemperature();
-    if (isnan(t)) {
+    _t = bme.readTemperature();
+    if (isnan(_t)) {
         Serial.println("Fallo de lectura Temperatura interior!");
         return "--";
     }
     else {
         Serial.print("Temperatura Interior = ");
-        Serial.print(t);
+        Serial.print(_t);
         Serial.println(" *C");    
-        return String(t);
+        return String(_t);
     }
 }
 
 String Sensores::lecturaHumedad() 
 {
-    float h = bme.readHumidity();
-  if (isnan(h)) {
-    Serial.println("Fallo de lectura Humedad!");
-    return "--";
-  }
-  else {
-    Serial.print("Humedad = ");
-    Serial.print(h);
-    Serial.println(" %");    
-    return String(h);
-  }
+    _h = bme.readHumidity();
+    if (isnan(_h)) {
+        Serial.println("Fallo de lectura Humedad!");
+        return "--";
+    }
+    else {
+        Serial.print("Humedad = ");
+        Serial.print(_h);
+        Serial.println(" %");    
+        return String(_h);
+    }
 }
 
 String Sensores::lecturaPresionAtmosferica() 
 {
-      float p = bme.readPressure() / 100.0;
-  if (isnan(p)) {
-    Serial.println("Fallo de lectura Presion Atmosferica!");
-    return "--";
-  }
-  else {
-    Serial.print("Presion Atmosferica = ");
-    Serial.print(p);
-    Serial.println(" hPa");    
-    return String(p);
-  }    
+    _p = bme.readPressure() / 100.0;
+    if (isnan(_p)) {
+        Serial.println("Fallo de lectura Presion Atmosferica!");
+        return "--";
+    }
+    else {
+        Serial.print("Presion Atmosferica = ");
+        Serial.print(_p);
+        Serial.println(" hPa");    
+        return String(_p);
+    }    
 }
 
 String Sensores::lecturaGas() 
 {
-     float g = bme.readGas() / 1000.0;
-  if (isnan(g)) {
-    Serial.println("Fallo de lectura Gas!");
-    return "--";
-  }
-  else {
-    Serial.print("Gas = ");
-    Serial.print(g);
-    Serial.println(" KOhms");    
-    return String(g);
-  }
+    _g = bme.readGas() / 1000.0;
+    if (isnan(_g)) {
+        Serial.println("Fallo de lectura Gas!");
+        return "--";
+    }
+    else {
+        Serial.print("Gas = ");
+        Serial.print(_g);
+        Serial.println(" KOhms");    
+        return String(_g);
+    }
 }
 
 String Sensores::lecturaAltitud() 
 {
-      float alt = bme.readAltitude(SEALEVELPRESSURE_HPA);
-  if (isnan(alt)) {
-    Serial.println("Fallo de lectura Altitude!");
-    return "--";
-  }
-  else {
-    Serial.print("Approx. Altitude = ");
-    Serial.print(alt);
-    Serial.println(" m");    
-    return String(alt);
-  }    
+    _alt = bme.readAltitude(SEALEVELPRESSURE_HPA);
+    if (isnan(_alt)) {
+        Serial.println("Fallo de lectura Altitude!");
+        return "--";
+    }
+    else {
+        Serial.print("Approx. Altitude = ");
+        Serial.print(_alt);
+        Serial.println(" m");    
+        return String(_alt);
+    }    
 }
 
 

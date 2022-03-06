@@ -41,6 +41,8 @@ void loop()
         Serial.println("Puedes dibujar los datos porfa ");
         p_pantalla->drawSensorExterno(p_antena);
         p_pantalla->drawSensorInterno(p_sensorBME680);
+        
         //p_sensorBME680->lecturaTemperatura();      
-   }     
+   }    
+   p_pantalla->drawSemaforo(p_antena); 
 }

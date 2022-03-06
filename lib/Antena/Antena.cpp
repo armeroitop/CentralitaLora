@@ -38,25 +38,39 @@ void Antena::setup()
     // The sync word assures you don't get LoRa messages from other LoRa transceivers
     // ranges from 0-0xFF
     LoRa.setSyncWord(0xF3);
-    Serial.println("LoRa Initializing OK!");  
+    Serial.println("LoRa Initializing OK!");
+
+    semaforoVerde = false;
+    semaforoAmarillo = false;
+    semaforoRojo = false;  
 }
 
 bool Antena::recibeDatos() 
 {
      // try to parse packet
-    int packetSize = LoRa.parsePacket();
-    if (packetSize) {                               
+    _packetSize = LoRa.parsePacket();
+    if (_packetSize) {                               
         // read packet
+        _packetSize = 0;
         while (LoRa.available()) {
          
             _datosRecibidos = LoRa.readString();
                      
             if(_datosRecibidos.substring(0, 4) != "dgma")  {
                 Serial.println("recibiste un paquete extraño: " + _datosRecibidos);
-               
+                              
                 return false;
             }else{                
                 Serial.println("recibiste un paquete de un tal DGMA: " + _datosRecibidos); 
+                _tamanopaquete =_datosRecibidos.length();
+                Serial.print("tamaño del paquete: ");
+                Serial.println(_tamanopaquete);
+
+                tiempoDatosRecividos = millis();
+                semaforoVerde = true;              
+                semaforoAmarillo = false;
+                semaforoRojo = false; 
+
                 _pos_temperatura =   _datosRecibidos.indexOf("temperatura");
                 _pos_humedad =       _datosRecibidos.indexOf("humedad");
                 _pos_suelo =         _datosRecibidos.indexOf("suelo");
@@ -79,5 +93,10 @@ bool Antena::recibeDatos()
     }  
     //Serial.println("recibeDatos.. ");
     return false;
+}
+
+void Antena::tiempoDesdeUltimoDato()
+{
+    
 }
 

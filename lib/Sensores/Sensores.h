@@ -19,6 +19,8 @@
 class Sensores
 {
     private:
+        float _t, _h, _p, _g, _alt;
+
         
         
     public:

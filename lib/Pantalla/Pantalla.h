@@ -24,7 +24,12 @@ class Pantalla
             _pos_gas,   
             _pos_altitud,
             _pos_bateria;
+
+        int _nivelBateriaDato;
+        int _longitudRectangulo;
+
         void IconoBateria(String nivel);
+       
    
     public:
         TFT_eSPI tft = TFT_eSPI();       // Invoke custom library
@@ -33,6 +38,7 @@ class Pantalla
         void setup();
         void drawSensorExterno(Antena* p_antena);
         void drawSensorInterno(Sensores *p_sensorBME680);
+        void drawSemaforo(Antena* p_antena);
 };
 
 
